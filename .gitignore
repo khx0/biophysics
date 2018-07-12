@@ -1,0 +1,6 @@
+# last revision 2018-05-28
+# khx0@posteo.net
+
+# no slashes anywhere
+# paths will only be checked if “/“ characters are included
+.ipynb_checkpoints

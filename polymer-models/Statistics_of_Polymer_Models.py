@@ -4,8 +4,8 @@
 # # Statistics of Polymer Models
 # ## Nikolas Schnellbächer (created 2018-07-04)
 # 
-# Here explore some statistical properties of two simples polymer models. 
-# We use the freely jointed and the freely rotating chain and simulate both using random walk models.
+# In this notebook we explore some statistical properties of two simples polymer models, the freely jointed chain (FJC) model and the freely rotating chain (FRC) model. 
+# We use random walk algorithms to numerically sample trajectories for both models.
 # In all cases $N$ denotes the number of chain segments and $a$ is the segment length. For the freely rotating chain model $\theta$ is the rotation angle. In this exercise we work in two dimensions exclusively.
 
 # In[1]:

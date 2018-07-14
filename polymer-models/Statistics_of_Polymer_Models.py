@@ -6,9 +6,9 @@
 # 
 # In this notebook we explore some statistical properties of two simples polymer models, the freely jointed chain (FJC) model and the freely rotating chain (FRC) model. 
 # We use random walk algorithms to numerically sample trajectories for both models.
-# In all cases $N$ denotes the number of chain segments and $a$ is the segment length. For the freely rotating chain model $\theta$ is the rotation angle. In this exercise we work in two dimensions exclusively.
+# In all cases $N$ denotes the number of chain segments and $a$ is the segment length. For the freely rotating chain model $\theta$ is the rotation angle. Here we work in two dimensions exclusively.
 
-# In[1]:
+# In[2]:
 
 
 import numpy as np
@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 from scipy import stats
 
 
-# In[2]:
+# In[14]:
 
 
 # define measurement functions here
@@ -41,7 +41,7 @@ def FloryC(theta):
     return (1.0 + np.cos(theta)) / (1.0 - np.cos(theta))
 
 
-# In[3]:
+# In[16]:
 
 
 def FJC(sampleLengths, m, a = 1.0e-3, x0 = 0.0, y0 = 0.0):
@@ -78,7 +78,7 @@ def FJC(sampleLengths, m, a = 1.0e-3, x0 = 0.0, y0 = 0.0):
     return outx, outy
 
 
-# In[4]:
+# In[15]:
 
 
 def FJC_vec(sampleLengths, m, a = 1.0e-3, x0 = 0.0, y0 = 0.0):
@@ -139,7 +139,7 @@ def FJC_vec(sampleLengths, m, a = 1.0e-3, x0 = 0.0, y0 = 0.0):
 # \end{align}
 # Here $\boldsymbol{x}$ and $\boldsymbol{f}$ are both two-dimensional position and orientation vectors, respectively.
 
-# In[5]:
+# In[10]:
 
 
 def FRC(sampleLengths, m, a = 1.0e-3, theta = 0.2 * np.pi, x0 = 0.0, y0 = 0.0):
@@ -189,7 +189,7 @@ def FRC(sampleLengths, m, a = 1.0e-3, theta = 0.2 * np.pi, x0 = 0.0, y0 = 0.0):
 # The implementation of the FRC function above is a very literal and explicit implementation. It is a straight forward implementation of the described formulaes and very literally implements the algorithm.
 # This makes it clear to understand what is going on, at the expense of computational speed. Below I show you a vectorized version for the FRC model, which is much faster and hence recommended for more extensive statistical analysis of the model.
 
-# In[6]:
+# In[11]:
 
 
 def FRC_vecSingle(N, a = 1.0e-3, theta = 0.2 * np.pi, x0 = 0.0, y0 = 0.0):
@@ -232,7 +232,7 @@ def FRC_wrapper(sampleIndices, m, a = 1.0e-3,                theta = 0.2 * np.pi
     return xVals, yVals
 
 
-# In[7]:
+# In[12]:
 
 
 def plot_trajectories(X, Y, m = 10):
@@ -262,20 +262,20 @@ def plot_trajectories(X, Y, m = 10):
 
 # ## Assay 1 -  Random walk model for the FJC
 
-# In[8]:
+# In[17]:
 
 
 get_ipython().run_cell_magic('time', '', 'np.random.seed(123456789)\n# create m = 25 FJC polymer configurations\nm = 25\nsampleLengths = np.arange(0.0, 501.0, 1)\nX1, Y1 = FJC(sampleLengths, m)')
 
 
-# In[9]:
+# In[18]:
 
 
 m = 25
 plot_trajectories(X1, Y1, m)
 
 
-# In[10]:
+# In[19]:
 
 
 get_ipython().run_cell_magic('time', '', 'np.random.seed(923456789)\n# create m = 25 FJC polymer configurations\nm = 25\nsampleLengths = np.arange(0.0, 501.0, 1)\nX1vec, Y1vec = FJC_vec(sampleLengths, m)')

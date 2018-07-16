@@ -8,7 +8,7 @@
 # We use random walk algorithms to numerically sample trajectories for both models.
 # In all cases $N$ denotes the number of chain segments and $a$ is the segment length. For the freely rotating chain model $\theta$ is the rotation angle. Here we work in two dimensions exclusively. An extension to $d = 3$ or $d = 1$ is straight forward.
 
-# In[3]:
+# In[1]:
 
 
 import numpy as np
@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 from scipy import stats
 
 
-# In[4]:
+# In[2]:
 
 
 # define measurement functions here
@@ -41,7 +41,7 @@ def FloryC(theta):
     return (1.0 + np.cos(theta)) / (1.0 - np.cos(theta))
 
 
-# In[5]:
+# In[3]:
 
 
 def FJC(sampleLengths, m, a = 1.0e-3, x0 = 0.0, y0 = 0.0):
@@ -78,7 +78,7 @@ def FJC(sampleLengths, m, a = 1.0e-3, x0 = 0.0, y0 = 0.0):
     return outx, outy
 
 
-# In[8]:
+# In[4]:
 
 
 def FJC_vec(sampleLengths, m, a = 1.0e-3, x0 = 0.0, y0 = 0.0):
@@ -140,7 +140,7 @@ def FJC_vec(sampleLengths, m, a = 1.0e-3, x0 = 0.0, y0 = 0.0):
 # \end{align}
 # Here $\boldsymbol{x}$ and $\boldsymbol{f}$ are both two-dimensional position and orientation vectors, respectively.
 
-# In[9]:
+# In[5]:
 
 
 def FRC(sampleLengths, m, a = 1.0e-3, theta = 0.2 * np.pi, x0 = 0.0, y0 = 0.0):
@@ -190,7 +190,7 @@ def FRC(sampleLengths, m, a = 1.0e-3, theta = 0.2 * np.pi, x0 = 0.0, y0 = 0.0):
 # The implementation of the FRC function above is a very literal and explicit implementation. It is a straight forward implementation of the described formulaes and very literally implements the algorithm.
 # This makes it clear to understand what is going on, at the expense of computational speed. Below I show you a vectorized version for the FRC model, which is much faster and hence recommended for more extensive statistical analysis of the model.
 
-# In[10]:
+# In[6]:
 
 
 def FRC_vecSingle(N, a = 1.0e-3, theta = 0.2 * np.pi, x0 = 0.0, y0 = 0.0):
@@ -233,7 +233,7 @@ def FRC_wrapper(sampleIndices, m, a = 1.0e-3,                theta = 0.2 * np.pi
     return xVals, yVals
 
 
-# In[13]:
+# In[7]:
 
 
 def plot_trajectories(X, Y, m = 10):
@@ -787,3 +787,12 @@ thetas = np.array([0.02 * np.pi, 0.05 * np.pi,                   0.1 * np.pi, 0.
 plot_msd_FRC_theta_LOG(thetas, res_ex6_vec, N = 2000.0)
 # print(res_ex6_vec)
 
+
+# In this assay we used the fact that the characteristic ratio
+# \begin{align}
+# C_{\infty}(\theta) = \dfrac{1+\cos\theta}{1-\cos\theta} \, .
+# \end{align}
+# For small $\theta$ we can Taylor expand this expression and equally work with
+# \begin{align}
+# C_{\infty}(\theta) = \dfrac{4}{\theta^2} - 1 + \mathcal{O}\left(\theta^3\right) \simeq \dfrac{4}{\theta^2} - 1 \, .
+# \end{align}

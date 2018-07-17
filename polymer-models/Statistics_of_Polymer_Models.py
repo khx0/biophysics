@@ -796,3 +796,4 @@ plot_msd_FRC_theta_LOG(thetas, res_ex6_vec, N = 2000.0)
 # \begin{align}
 # C_{\infty}(\theta) = \dfrac{4}{\theta^2} - 1 + \mathcal{O}\left(\theta^3\right) \simeq \dfrac{4}{\theta^2} - 1 \, .
 # \end{align}
+# This additionally shows us that the apparent divergence of $C_{\infty}$ in the $\theta\rightarrow 0$ limit scales as $\theta^{-2}$.
